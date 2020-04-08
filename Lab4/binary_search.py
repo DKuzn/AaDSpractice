@@ -1,10 +1,6 @@
 import time
 import numpy as np
-
-
-n = 1
-dx = 10
-key = 43
+import matplotlib.pyplot as plt
 
 
 def binary_search(array, key):
@@ -26,27 +22,25 @@ def binary_search(array, key):
     else:
         return -1
 
-def hubble_sort(array):
-    for i in range(len(array) - 1):
-        for j in range(len(array) - i - 1):
-            if array[j] > array[j + 1]:
-                array[j], array[j + 1] = array[j + 1], array[j]
 
+n = 1000
+dx = 100000
+key = 435
+result = []
+search_time = []
+while n <= 1.0e+6 + 1000:
+    array = np.arange(n, dtype=int)
+    a = binary_search(array, key)
+    b = time.process_time()
+    n += dx
+    result.append(len(array))
+    search_time.append(b)
 
-print('-'*47)
-print('{:<1} {:<20} {:<1} {:<20} {:<1}'.format('|', 'Key', '|', 'Time', '|'))
-print('-'*47)
-
-array = np.random.randint(0, 100, 25)
-hubble_sort(array)
-print(array)
-a = binary_search(array, key)
-print(a)
-#while n < 1000:
-    #array = np.random.randint(0, 1000, n)
-    #hubble_sort(array)
-    #b = binary_search(array, key)
-    #c = time.process_time()
-    #n += dx
-    #print('{:<1} {:<20} {:<1} {:<20} {:<1}'.format('|', b, '|', c, '|'))
-    #print('-' * 47)
+plt.plot(result, search_time, 'g')
+plt.ylabel('Time')
+plt.xlabel('Array length')
+plt.title('Binary search')
+plt.tight_layout()
+plt.grid()
+print(result)
+print(search_time)

@@ -1,10 +1,6 @@
 import time
 import numpy as np
-
-
-n = 1000
-dx = 100000
-key = 435
+import matplotlib.pyplot as plt
 
 
 def linear_search(array, key):
@@ -13,14 +9,24 @@ def linear_search(array, key):
             return array[i]
 
 
-print('-'*47)
-print('{:<1} {:<20} {:<1} {:<20} {:<1}'.format('|', 'Key', '|', 'Time', '|'))
-print('-'*47)
-
-while n < 1.0e+6:
+n = 1000
+dx = 100000
+key = 435
+result = []
+search_time = []
+while n <= 1.0e+6 + 1000:
     array = np.arange(n, dtype=int)
     a = linear_search(array, key)
     b = time.process_time()
     n += dx
-    print('{:<1} {:<20} {:<1} {:<20} {:<1}'.format('|', a, '|', b, '|'))
-    print('-' * 47)
+    result.append(len(array))
+    search_time.append(b)
+
+plt.plot(result, search_time, 'g')
+plt.ylabel('Time')
+plt.xlabel('Array length')
+plt.title('Linear search')
+plt.tight_layout()
+plt.grid()
+print(result)
+print(search_time)

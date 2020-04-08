@@ -1,46 +1,49 @@
 import time
 import numpy as np
-
-
-n = 1
-dx = 100000
-key = 435
+import matplotlib.pyplot as plt
 
 
 def interpolational_search(array, key):
     minimum = 0
     maximum = len(array) - 1
-    ret = 0
+    search = 0
     while array[minimum] < key < array[maximum]:
-        avg = int(minimum + (maximum - minimum) * (key - array[minimum]) / (array[maximum] - array[minimum]))
-        if array[avg] == key:
-            ret = avg
+        dist = int((maximum - minimum) * (key - array[minimum]) / (array[maximum] - array[minimum]))
+        if array[dist] == key:
+            search = dist
             break
-        elif array[avg] > key:
-            maximum = avg - 1
+        elif array[dist] > key:
+            maximum = dist - 1
         else:
-            minimum = avg + 1
-
+            minimum = dist + 1
     if array[minimum] == key:
-        ret = minimum
-    if array[maximum] == key:
-        ret = maximum
-    while ret > 0 and array[ret - 1] == key:
-        ret -= 1
-    if array[ret] == key:
-        return ret
-    else:
-        return -1
+        search = minimum
+    elif array[maximum] == key:
+        search = maximum
+    elif array[search] == key:
+        return search
+    return array[search]
 
 
-print('-'*47)
-print('{:<1} {:<20} {:<1} {:<20} {:<1}'.format('|', 'Key', '|', 'Time', '|'))
-print('-'*47)
-
-while n < 1.0e+6:
+n = 1000
+dx = 100000
+key = 435
+result = []
+search_time = []
+while n <= 1.0e+6 + 1000:
     array = np.arange(n, dtype=int)
     a = interpolational_search(array, key)
     b = time.process_time()
     n += dx
-    print('{:<1} {:<20} {:<1} {:<20} {:<1}'.format('|', a, '|', b, '|'))
-    print('-' * 47)
+    result.append(len(array))
+    search_time.append(b)
+
+plt.plot(result, search_time, 'g')
+plt.ylabel('Time')
+plt.xlabel('Array length')
+plt.title('Interpolational search')
+plt.tight_layout()
+plt.grid()
+print(result)
+print(search_time)
+
