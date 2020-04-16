@@ -14,6 +14,7 @@ def selection_sort(array):
                 m = j
             j += 1
         array[i], array[m] = array[m], array[i]
+    return array
 
 
 print(row)

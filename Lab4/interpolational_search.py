@@ -8,7 +8,7 @@ def interpolational_search(array, key):
     maximum = len(array) - 1
     search = 0
     while array[minimum] < key < array[maximum]:
-        dist = int((maximum - minimum) * (key - array[minimum]) / (array[maximum] - array[minimum]))
+        dist = int(minimum + (maximum - minimum) * (key - array[minimum]) / (array[maximum] - array[minimum]))
         if array[dist] == key:
             search = dist
             break
@@ -20,9 +20,12 @@ def interpolational_search(array, key):
         search = minimum
     elif array[maximum] == key:
         search = maximum
-    elif array[search] == key:
+    while search > 0 and array[search - 1] == key:
+        search -= 1
+    if array[search] == key:
         return search
-    return array[search]
+    else:
+        return -1
 
 
 n = 1000

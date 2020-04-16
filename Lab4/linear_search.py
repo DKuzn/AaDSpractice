@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 def linear_search(array, key):
     for i in range(len(array)):
         if array[i] == key:
-            return array[i]
+            return i
 
 
 n = 1000
