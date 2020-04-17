@@ -7,6 +7,8 @@ def linear_search(array, key):
     for i in range(len(array)):
         if array[i] == key:
             return i
+        else:
+            return -1
 
 
 n = 1000
