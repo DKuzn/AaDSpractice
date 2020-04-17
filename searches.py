@@ -70,7 +70,6 @@ def fibonaccian_search(array, key):
             fib_n = fib_nm2
             fib_nm1 = fib_nm1 - fib_nm2
             fib_nm2 = fib_n - fib_nm1
-
         else:
             return i
     if fib_nm1 and array[offset] == key:
