@@ -9,28 +9,22 @@ class TInfo:
 
 
 @dataclass
-class THashItem:
+class HashItem:
     info: TInfo
     empty: bool = True
     visit: bool = False
 
 
-@dataclass
-class HashItemChain:
-    info: TInfo
-    del_info = False
-
-
 class MyHash:
-    hash_table: List[HashItemChain]
+    hash_table: List[HashItem]
     info: TInfo
 
     def __init__(self, size_table):
         self.size_table = size_table
         self.info = TInfo()
-        self.hash_table = [HashItemChain(info=self.info) for _ in range(self.size_table)]
+        self.hash_table = [HashItem(info=self.info) for _ in range(self.size_table)]
         self.size = 0
-        self.step = 37
+        self.step = 21
 
     def __hash_function(self, s):
         result = 0
@@ -47,8 +41,8 @@ class MyHash:
                 adr = (adr + self.step) // self.size_table
             self.hash_table[adr].empty = False
             self.hash_table[adr].visit = True
-            self.hash_table[adr].info.name = name
-            self.hash_table[adr].info.phone = phone
+            contact = TInfo(phone=phone, name=name)
+            self.hash_table[adr].info = contact
             self.size += 1
         return adr
 
@@ -92,9 +86,19 @@ class MyHash:
         return result
 
     def __str__(self):
-        out_list = []
-        if self.hash_table[0] is not None:
-            for i in range(len(self.hash_table)):
-                out = "i + 1" + " " + self.hash_table[i].phone + " " + self.hash_table[i].name
-                out_list.append(out)
-        return out_list
+        out = ""
+        head = "{:<6}{:<20}{:<20}".format("N", "NAME", "PHONE")
+        out += head
+        out += "\n"
+        for i in range(self.size_table):
+            name: str = self.hash_table[i].info.name
+            phone: str = self.hash_table[i].info.phone
+            string = "{:<6}{:<20}{:<20}".format(i + 1, name, phone)
+            out += string
+            out += "\n"
+        return out
+
+
+table = MyHash(10)
+table.add_hash("Dmitry Kuznetsov", "9999999999")
+print(table)
