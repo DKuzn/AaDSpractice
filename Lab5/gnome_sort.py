@@ -6,7 +6,8 @@ row = np.random.randint(0, 100, 10)
 
 
 def gnome_sort(array):
-    for i in range(1, len(array)):
+    i, size = 1, len(array)
+    while i < size:
         if array[i - 1] <= array[i]:
             i += 1
         else:
