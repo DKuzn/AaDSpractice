@@ -1,7 +1,7 @@
 import numpy as np
 import time
 #импортируем тот файл функции которого вы хотите представить в виде графика
-from sorts import bubble_sort, insertion_sort, merge_sort, quick_sort, selection_sort
+from Tests.sorts import bubble_sort, insertion_sort, merge_sort, quick_sort, selection_sort
 import matplotlib.pyplot as plt
 
 

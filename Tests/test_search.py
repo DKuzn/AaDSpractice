@@ -1,7 +1,7 @@
 import numpy as np
 import time
 #импортируем тот файл функции которого вы хотите представить в виде графика
-from searches import linear_search, binary_search, interpolational_search, fibonaccian_search
+from Tests.searches import linear_search, binary_search, interpolational_search, fibonaccian_search
 import matplotlib.pyplot as plt
 
 
