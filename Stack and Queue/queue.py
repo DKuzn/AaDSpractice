@@ -3,14 +3,13 @@ class Queue:
         self.data = []
 
     def __str__(self):
-        current = self.data
-        out = str(current)
+        out = str(self.data)
         return out
 
     def push(self, item):
         self.data.insert(0, item)
 
-    def remove(self):
+    def pop(self):
         return self.data.pop()
 
     def size(self):
@@ -24,6 +23,6 @@ queue.push(2)
 queue.push(4)
 print(queue)
 print(queue.size())
-queue.remove()
+queue.pop()
 print(queue)
 print(queue.size())
