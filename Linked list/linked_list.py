@@ -20,10 +20,10 @@ class MyLinkedList:
     def __str__(self):
         if self.head is not None:
             current = self.head
-            out = "[" + str(current.data)
-            while current.next is not None:
-                current = current.next
-                out += "," + " " + str(current.data)
+            out = "[" + str(current.get_data())
+            while current.get_next() is not None:
+                current = current.get_next()
+                out += "," + " " + str(current.get_data())
             return out + "]"
 
     def push(self, value):
@@ -51,7 +51,7 @@ class MyLinkedList:
                 current = current.get_next()
         if found:
             new_node = Node(new_data)
-            new_node.set_next(current.get_next)
+            new_node.set_next(current.get_next())
             current.set_next(new_node)
 
     def length(self):
@@ -103,5 +103,6 @@ llist.push(1)
 print(llist)
 print(llist.length())
 print(llist.search(6))
-llist.insert_after(2, 9)
+llist.insert_after(6, 9)
 print(llist)
+print(llist.length())
