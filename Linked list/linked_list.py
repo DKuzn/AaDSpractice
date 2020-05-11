@@ -3,6 +3,15 @@ class Node:
         self.data = data
         self.next = None
 
+    def get_data(self):
+        return self.data
+
+    def get_next(self):
+        return self.next
+
+    def set_next(self, next):
+        self.next = next
+
 
 class MyLinkedList:
     def __init__(self):
@@ -14,13 +23,13 @@ class MyLinkedList:
             out = "[" + str(current.data)
             while current.next is not None:
                 current = current.next
-                out += " " +str(current.data)
+                out += "," + " " + str(current.data)
             return out + "]"
 
-    def push(self, new_data):
-        new_node = Node(new_data)
-        new_node.next = self.head
-        self.head = new_node
+    def push(self, value):
+        temp = Node(value)
+        temp.set_next(self.head)
+        self.head = temp
 
     def append(self, new_data):
         new_node = Node(new_data)
@@ -29,35 +38,70 @@ class MyLinkedList:
             return
         last = self.head
         while last.next:
-            last = last.next
-        last.next = new_node
+            last = last.get_next()
+        last.set_next(new_node)
+
+    def insert_after(self, key, new_data):
+        current = self.head
+        found = False
+        while current is not None and not found:
+            if current.get_data() == key:
+                found = True
+            else:
+                current = current.get_next()
+        if found:
+            new_node = Node(new_data)
+            new_node.set_next(current.get_next)
+            current.set_next(new_node)
+
+    def length(self):
+        current = self.head
+        count = 0
+        while current is not None:
+            count += 1
+            current = current.get_next()
+        return count
+
+    def search(self, key):
+        current = self.head
+        found = False
+        while current is not None and not found:
+            if current.get_data() == key:
+                found = True
+            else :
+                current = current.get_next()
+        return found
 
     def delete_node(self, key):
-        temp = self.head
-        if temp is not None:
-            if temp.data == key:
-                self.head = temp.next
-                temp = None
-                return
-        while temp is not None:
-            if temp.data == key:
-                break
-            prev = temp
-            temp = temp.next
-            if temp is None:
-                return
-            prev.next = temp.next
-            temp = None
+        current = self.head
+        previous = None
+        found = False
+        while not found:
+            if current.get_data() == key:
+                found = True
+            else:
+                previous = current
+                current = current.get_next()
+        if previous is None:
+            self.head = current.get_next()
+        else:
+            previous.set_next(current.get_next())
 
 
 llist = MyLinkedList()
 
 llist.push(1)
 llist.push(4)
-llist.append(5)
-llist.append(10)
+llist.push(6)
 print(llist)
-llist.append(6)
+llist.delete_node(4)
+print(llist)
+llist.append(7)
+llist.append(8)
 print(llist)
 llist.push(1)
+print(llist)
+print(llist.length())
+print(llist.search(6))
+llist.insert_after(2, 9)
 print(llist)
