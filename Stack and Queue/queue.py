@@ -1,4 +1,4 @@
-class Queue:
+class MyQueue:
     def __init__(self):
         self.data = []
 
@@ -16,7 +16,7 @@ class Queue:
         return len(self.data)
 
 
-queue = Queue()
+queue = MyQueue()
 queue.push(1)
 queue.push(3)
 queue.push(2)
