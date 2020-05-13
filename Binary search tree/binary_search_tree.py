@@ -66,7 +66,7 @@ class MyBinarySearchTree:
             return True
 
     def pre_order(self):
-        print(self.root)
+        print(self.root, end=" ")
         if self.left:
             self.left.pre_order()
         if self.right:
@@ -75,7 +75,7 @@ class MyBinarySearchTree:
     def in_order(self):
         if self.left:
             self.left.in_order()
-        print(self.root)
+        print(self.root, end=" ")
         if self.right:
             self.right.in_order()
 
@@ -84,7 +84,7 @@ class MyBinarySearchTree:
             self.left.post_order()
         if self.right:
             self.right.post_order()
-        print(self.root)
+        print(self.root, end=" ")
 
 
 bst = MyBinarySearchTree(20)
@@ -98,7 +98,7 @@ bst.insert(13)
 print(bst.search(15))
 print("Pre-order:")
 bst.pre_order()
-print("In-order:")
+print("\nIn-order:")
 bst.in_order()
-print("Post-order:")
+print("\nPost-order:")
 bst.post_order()
