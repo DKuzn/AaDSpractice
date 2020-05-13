@@ -86,23 +86,3 @@ class MyLinkedList:
             self.head = current.get_next()
         else:
             previous.set_next(current.get_next())
-
-
-llist = MyLinkedList()
-
-llist.push(1)
-llist.push(4)
-llist.push(6)
-print(llist)
-llist.delete_node(4)
-print(llist)
-llist.append(7)
-llist.append(8)
-print(llist)
-llist.push(1)
-print(llist)
-print(llist.length())
-print(llist.search(6))
-llist.insert_after(6, 9)
-print(llist)
-print(llist.length())
