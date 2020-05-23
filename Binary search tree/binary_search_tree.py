@@ -21,14 +21,14 @@ class MyBinarySearchTree:
             return self.right.search(value)
         return value == self.root
 
-    def clear_node(self):
+    def __clear_node(self):
         self.root = None
         self.left = None
         self.right = None
 
-    def find_minimum_value(self):
+    def __find_minimum_value(self):
         if self.left:
-            return self.left.find_minimum_value()
+            return self.left.__find_minimum_value()
         else:
             return self.root
 
@@ -44,24 +44,24 @@ class MyBinarySearchTree:
         else:
             if self.left is None and self.right is None and self == parent.left:
                 parent.left = None
-                self.clear_node()
+                self.__clear_node()
             elif self.left is None and self.right is None and self == parent.right:
                 parent.right = None
-                self.clear_node()
+                self.__clear_node()
             elif self.left and self.right is None and self == parent.left:
                 parent.left = self.left
-                self.clear_node()
+                self.__clear_node()
             elif self.left and self.right is None and self == parent.right:
                 parent.right = self.left
-                self.clear_node()
+                self.__clear_node()
             elif self.left is None and self.right and self == parent.left:
                 parent.left = self.right
-                self.clear_node()
+                self.__clear_node()
             elif self.left is None and self.right and self == parent.right:
                 parent.right = self.right
-                self.clear_node()
+                self.__clear_node()
             else:
-                self.root = self.right.find_minimum_value()
+                self.root = self.right.__find_minimum_value()
                 self.right.delete_node(self.root, self)
             return True
 
