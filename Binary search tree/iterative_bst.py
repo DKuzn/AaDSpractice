@@ -40,13 +40,13 @@ class IterativeBST:
         point = None
         while current is not None:
             point = current
-            if key < point.get_data():
+            if key <= point.get_data():
                 current = current.get_left()
             else:
                 current = current.get_right()
         if point is None:
             point = Node(key)
-        elif key < point.get_data():
+        elif key <= point.get_data():
             point.set_left(Node(key))
         else:
             point.set_right(Node(key))
