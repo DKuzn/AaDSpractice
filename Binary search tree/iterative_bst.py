@@ -20,7 +20,7 @@ class Node:
         self.right = right
 
 
-class IterativeBTS:
+class IterativeBST:
     def __init__(self, data):
         self.root = Node(data)
 
@@ -112,7 +112,7 @@ class IterativeBTS:
         print()
 
 
-bst = IterativeBTS(15)
+bst = IterativeBST(15)
 bst.insert(13)
 bst.insert(16)
 bst.insert(14)
