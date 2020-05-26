@@ -34,11 +34,11 @@ class MyBinarySearchTree:
 
     def delete_node(self, value, parent):
         if value < self.root and self.left:
-            return self.left.delete_node(value, parent)
+            return self.left.delete_node(value, self)
         elif value < self.root:
             return False
         elif value > self.root and self.right:
-            return self.right.delete_node(value, parent)
+            return self.right.delete_node(value, self)
         elif value > self.root:
             return False
         else:
