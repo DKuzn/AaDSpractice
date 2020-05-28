@@ -79,12 +79,29 @@ class MyBinarySearchTree:
         if self.right:
             self.right.in_order()
 
+    def __in_order(self, array):
+        if self.left:
+            self.left.__in_order(array)
+        array.append(self.root)
+        if self.right:
+            self.right.__in_order(array)
+
     def post_order(self):
         if self.left:
             self.left.post_order()
         if self.right:
             self.right.post_order()
         print(self.root, end=" ")
+
+    def sequence_less_key(self, key):
+        keys = []
+        out = []
+        self.__in_order(keys)
+        i = 0
+        while keys[i] < key:
+            out.append(keys[i])
+            i += 1
+        print(out)
 
 
 bst = MyBinarySearchTree(20)
@@ -102,3 +119,5 @@ print("\nIn-order:")
 bst.in_order()
 print("\nPost-order:")
 bst.post_order()
+print()
+bst.sequence_less_key(20)
