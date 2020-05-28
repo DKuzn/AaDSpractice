@@ -1,6 +1,7 @@
 class MyStack:
     def __init__(self):
         self.data = []
+        self.empty = True
 
     def __str__(self):
         out = str(self.data)
@@ -8,21 +9,19 @@ class MyStack:
 
     def push(self, item):
         self.data.append(item)
+        if self.empty:
+            self.empty = False
 
     def pop(self):
-        return self.data.pop()
+        self.data.pop()
+        if not self.data:
+            self.empty = True
+
+    def check_empty(self):
+        if self.empty:
+            return True
+        else:
+            return False
 
     def size(self):
         return len(self.data)
-
-
-stack = MyStack()
-stack.push(2)
-stack.push(4)
-stack.push(5)
-stack.push(7)
-print(stack)
-print(stack.size())
-stack.pop()
-print(stack)
-print(stack.size())
