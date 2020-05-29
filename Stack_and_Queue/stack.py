@@ -4,8 +4,10 @@ class MyStack:
         self.empty = True
 
     def __str__(self):
-        out = str(self.data)
-        return out
+        out = '['
+        for i in range(self.size() - 1):
+            out += str(self.data[i])
+        return out + ']'
 
     def push(self, item):
         self.data.append(item)
