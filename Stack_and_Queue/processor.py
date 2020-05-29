@@ -57,3 +57,6 @@ class Processor:
             self.__run_task_t2()
         else:
             self.thread2.idle = True
+
+    def idle_proc(self):
+        return self.thread1.idle or self.thread2.idle

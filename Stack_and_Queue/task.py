@@ -12,7 +12,7 @@ class TaskData:
 class Task:
     def __init__(self):
         self.current_task = TaskData()
-        self.current_task.time = rd.randint(1, 4)
+        self.current_task.time = rd.randint(1, 9)
         self.current_task.type = rd.randint(1, 2)
 
     def __str__(self):
@@ -30,6 +30,10 @@ class TaskGenerator:
         self.queue1 = MyQueue()
         self.queue2 = MyQueue()
 
+    def __str__(self):
+        out = str(self.queue1) + '\n' + str(self.queue2)
+        return out + '\n'
+
     def gen_task(self):
         task = Task()
         if task.get_type() == 1:
@@ -39,8 +43,17 @@ class TaskGenerator:
 
     def get_task(self):
         queue = rd.randint(1, 2)
-        if queue == 1:
+        if queue == 1 and not self.queue1.check_empty():
+            task = self.queue1.pop()
+        elif queue == 2 and not self.queue2.check_empty():
+            task = self.queue2.pop()
+        elif queue == 1 and self.queue1.check_empty():
+            task = self.queue2.pop()
+        elif queue == 2 and self.queue2.check_empty():
             task = self.queue1.pop()
         else:
-            task = self.queue2.pop()
+            task = None
         return task
+
+    def none_task(self):
+        return self.queue1.check_empty() and self.queue2.check_empty()
