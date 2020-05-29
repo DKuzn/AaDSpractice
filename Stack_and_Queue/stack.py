@@ -1,4 +1,4 @@
-class MyQueue:
+class MyStack:
     def __init__(self):
         self.data = []
         self.empty = True
@@ -8,14 +8,18 @@ class MyQueue:
         return out
 
     def push(self, item):
-        self.data.insert(0, item)
+        self.data.append(item)
         if self.empty:
             self.empty = False
 
     def pop(self):
-        self.data.pop()
+        if not self.check_empty():
+            out = self.data.pop()
+        else:
+            out = None
         if not self.data:
             self.empty = True
+        return out
 
     def check_empty(self):
         if self.empty:
