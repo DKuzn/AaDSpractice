@@ -15,15 +15,11 @@ class Processor:
         self.thread2 = Thread()
 
     def add_task(self, task: Task):
-        if task.get_type() in [1, 2]:
+        if task.get_type() == 1:
             if self.thread1.idle:
                 self.thread1.task_type = task.get_type()
                 self.thread1.work_time = task.get_time()
                 self.thread1.idle = False
-            elif self.thread2.idle and task.get_type() == 2:
-                self.thread2.task_type = task.get_type()
-                self.thread2.work_time = task.get_time()
-                self.thread2.idle = False
         elif task.get_type() == 2:
             if self.thread2.idle:
                 self.thread2.task_type = task.get_type()
@@ -59,4 +55,4 @@ class Processor:
             self.thread2.idle = True
 
     def idle_proc(self):
-        return self.thread1.idle or self.thread2.idle
+        return self.thread2.idle or self.thread1.idle
