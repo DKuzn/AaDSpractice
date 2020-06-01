@@ -11,9 +11,11 @@ class TaskData:
 
 class Task:
     def __init__(self):
+        task_time = [0, 10, 5]
+        task_type = rd.randint(1, 2)
         self.current_task = TaskData()
-        self.current_task.time = rd.randint(1, 9)
-        self.current_task.type = rd.randint(1, 2)
+        self.current_task.time = task_time[task_type]
+        self.current_task.type = task_type
 
     def __str__(self):
         return '[' + str(self.get_type()) + ',' + str(self.get_time()) + ']'

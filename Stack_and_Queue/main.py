@@ -1,11 +1,9 @@
 from Stack_and_Queue.processor import Processor
 from Stack_and_Queue.task import TaskGenerator
-from Stack_and_Queue.stack import MyStack
 
 
 generator = TaskGenerator()
 processor = Processor()
-cash = MyStack()
 
 for i in range(50):
     generator.gen_task()
@@ -15,11 +13,8 @@ while generator.get_task() is not None:
     if processor.idle_proc():
         if not generator.none_task():
             processor.add_task(task)
-        elif not cash.check_empty():
-            processor.add_task(cash.pop())
-    else:
-        cash.push(task)
-    print('Stack before:', cash)
+        elif not processor.wait.check_empty():
+            processor.add_task(processor.wait.pop())
     print('Tasks\n', generator)
-    print('Stack after:', cash)
+    print('Stack:', processor.wait)
     processor.running()

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from Stack_and_Queue.task import Task
+from Stack_and_Queue.stack import MyStack
 
 
 @dataclass()
@@ -13,6 +14,7 @@ class Processor:
     def __init__(self):
         self.thread1 = Thread()
         self.thread2 = Thread()
+        self.wait = MyStack()
 
     def add_task(self, task: Task):
         if task.get_type() == 1:
@@ -20,6 +22,8 @@ class Processor:
                 self.thread1.task_type = task.get_type()
                 self.thread1.work_time = task.get_time()
                 self.thread1.idle = False
+            else:
+                self.wait.push(task)
         elif task.get_type() == 2:
             if self.thread2.idle:
                 self.thread2.task_type = task.get_type()
@@ -29,6 +33,8 @@ class Processor:
                 self.thread1.task_type = task.get_type()
                 self.thread1.work_time = task.get_time()
                 self.thread1.idle = False
+            else:
+                self.wait.push(task)
 
     def __run_task_t1(self):
         self.thread1.work_time -= 1
