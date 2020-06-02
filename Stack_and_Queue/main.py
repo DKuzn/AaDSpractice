@@ -10,7 +10,7 @@ for i in range(50):
 
 while True:
     task = generator.get_task()
-    if processor.idle_proc():
+    if processor.idle_thread():
         if not generator.none_task():
             processor.add_task(task)
         elif not processor.wait.check_empty():
@@ -19,5 +19,5 @@ while True:
     print('Processor:\n', processor)
     print('Stack:', processor.wait)
     processor.running()
-    if generator.none_task() and processor.wait.check_empty() and processor.thread1.idle and processor.thread2.idle:
+    if generator.none_task() and processor.wait.check_empty() and processor.idle_proc():
         break

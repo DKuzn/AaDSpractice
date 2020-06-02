@@ -25,9 +25,9 @@ class MyQueue:
 
     def check_empty(self):
         if self.empty:
-            return True
+            return self.empty
         else:
-            return False
+            return self.empty
 
     def size(self):
         return len(self.data)

@@ -68,5 +68,8 @@ class Processor:
         else:
             self.thread2.idle = True
 
-    def idle_proc(self):
+    def idle_thread(self):
         return self.thread1.idle or self.thread2.idle
+
+    def idle_proc(self):
+        return self.thread1.idle and self.thread2.idle
