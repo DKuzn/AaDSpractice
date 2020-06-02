@@ -2,7 +2,6 @@ from Linked_list.linked_list import MyLinkedList
 import random as rd
 
 polynomial = MyLinkedList()
-test = MyLinkedList()
 
 
 def polynom(x, n):
