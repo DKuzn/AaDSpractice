@@ -64,8 +64,7 @@ class MyHash:
             i = (i + self.step) // self.size_table
             ok = self.hash_table[i].info.phone == phone
         if ok:
-            result = i
-            name = self.hash_table[i].info.name
+            result = i + 1
         return result
 
     def del_hash(self, phone: str):
@@ -75,12 +74,16 @@ class MyHash:
             i = self.__hash_function(phone)
             if self.hash_table[i].info.phone == phone:
                 self.hash_table[i].empty = True
+                self.hash_table[i].info.name = " "
+                self.hash_table[i].info.phone = " "
                 result = True
                 self.size -= 1
             else:
                 i = self.find_hash(phone)
-                if i != -1:
+                if i == -1:
                     self.hash_table[i].empty = True
+                    self.hash_table[i].info.name = " "
+                    self.hash_table[i].info.phone = " "
                     result = True
                     self.size -= 1
         return result
