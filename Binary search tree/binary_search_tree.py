@@ -102,22 +102,3 @@ class MyBinarySearchTree:
             out.append(keys[i])
             i += 1
         print(out)
-
-
-bst = MyBinarySearchTree(20)
-bst.insert(15)
-bst.insert(17)
-bst.insert(21)
-bst.insert(19)
-bst.insert(25)
-bst.insert(27)
-bst.insert(13)
-print(bst.search(15))
-print("Pre-order:")
-bst.pre_order()
-print("\nIn-order:")
-bst.in_order()
-print("\nPost-order:")
-bst.post_order()
-print()
-bst.sequence_less_key(20)
