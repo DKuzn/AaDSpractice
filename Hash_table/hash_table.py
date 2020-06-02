@@ -53,7 +53,6 @@ class MyHash:
     def find_hash(self, phone: str):
         result = -1
         ok: bool
-        name = " "
         count = 1
         self.__clear_visit()
         i = self.__hash_function(phone)
