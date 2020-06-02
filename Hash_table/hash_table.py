@@ -79,7 +79,7 @@ class MyHash:
                 self.size -= 1
             else:
                 i = self.find_hash(phone)
-                if (i != -1):
+                if i != -1:
                     self.hash_table[i].empty = True
                     result = True
                     self.size -= 1
@@ -97,8 +97,3 @@ class MyHash:
             out += string
             out += "\n"
         return out
-
-
-table = MyHash(10)
-table.add_hash("Dmitry Kuznetsov", "9999999999")
-print(table)
