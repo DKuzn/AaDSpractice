@@ -16,6 +16,14 @@ class Processor:
         self.thread2 = Thread()
         self.wait = MyStack()
 
+    def __str__(self):
+        out = '|thread|type|time|idle |\n'
+        out += '{:<9}{:<5}{:<5}{:<6}'.format('  1', str(self.thread1.task_type), str(self.thread1.work_time),
+                                             str(self.thread1.idle)) + '\n'
+        out += '{:<9}{:<5}{:<5}{:<6}'.format('  2', str(self.thread2.task_type), str(self.thread2.work_time),
+                                             str(self.thread2.idle))
+        return out
+
     def add_task(self, task: Task):
         if task.get_type() == 1:
             if self.thread1.idle:
@@ -55,10 +63,10 @@ class Processor:
             self.__run_task_t1()
         else:
             self.thread1.idle = True
-        if not self.thread2:
+        if not self.thread2.idle:
             self.__run_task_t2()
         else:
             self.thread2.idle = True
 
     def idle_proc(self):
-        return self.thread2.idle or self.thread1.idle
+        return self.thread1.idle or self.thread2.idle
