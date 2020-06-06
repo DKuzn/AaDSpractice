@@ -25,14 +25,18 @@ class Processor:
         return out
 
     def add_task(self, task: Task):
-        if not self.idle_proc():
-            self.wait.push(task)
-
-        elif task.get_type() == 1:
+        if task.get_type() == 1:
             if self.thread1.idle:
                 self.thread1.task_type = task.get_type()
                 self.thread1.work_time = task.get_time()
                 self.thread1.idle = False
+            elif self.thread1.task_type == 2:
+                denied_task = Task(self.thread1.task_type, self.thread1.work_time)
+                self.thread1.task_type = task.get_type()
+                self.thread1.work_time = task.get_time()
+                self.wait.push(denied_task)
+            else:
+                self.wait.push(task)
         elif task.get_type() == 2:
             if self.thread2.idle:
                 self.thread2.task_type = task.get_type()
@@ -42,6 +46,8 @@ class Processor:
                 self.thread1.task_type = task.get_type()
                 self.thread1.work_time = task.get_time()
                 self.thread1.idle = False
+            else:
+                self.wait.push(task)
 
     def __run_task_t1(self):
         self.thread1.work_time -= 1
