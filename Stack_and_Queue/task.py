@@ -10,10 +10,10 @@ class TaskData:
 
 
 class Task:
-    def __init__(self):
+    def __init__(self, task_type, task_time):
         self.current_task = TaskData()
-        self.current_task.time = rd.randint(4, 10)
-        self.current_task.type = rd.randint(1, 2)
+        self.current_task.time = task_time
+        self.current_task.type = task_type
 
     def __str__(self):
         return '[' + str(self.get_type()) + ',' + str(self.get_time()) + ']'
@@ -35,7 +35,7 @@ class TaskGenerator:
         return out + '\n'
 
     def gen_task(self):
-        task = Task()
+        task = Task(rd.randint(1, 2), rd.randint(4, 8))
         if task.get_type() == 1:
             self.queue1.push(task)
         else:
