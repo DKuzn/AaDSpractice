@@ -15,9 +15,9 @@ while True:
             processor.add_task(task)
         elif not processor.wait.check_empty():
             processor.add_task(processor.wait.pop())
+    processor.running()
     print('Tasks\n', generator)
     print('Processor:\n', processor)
     print('Stack:', processor.wait)
-    processor.running()
     if generator.none_task() and processor.wait.check_empty() and processor.idle_proc():
         break
