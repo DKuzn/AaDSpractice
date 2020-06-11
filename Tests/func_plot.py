@@ -6,7 +6,7 @@ def func(x):
     return np.sqrt((10 ** 10) / ((10 ** 4 - 4 * np.pi ** 2 * x ** 2) ** 2 + 4 * np.pi ** 2 * x ** 2))
 
 
-x = np.linspace(1, 10**1.72, 10**2)
+x = np.linspace(0, 10**1.72, 10**2)
 y = func(x)
 print(len(x))
 
