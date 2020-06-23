@@ -131,4 +131,4 @@ class MyBinarySearchTree:
             compare = self.__subtrees_sizes(root)
             if compare:
                 nodes.append(root)
-        return print(nodes)
+        print(nodes)
