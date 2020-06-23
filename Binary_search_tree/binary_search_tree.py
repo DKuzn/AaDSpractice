@@ -21,11 +21,11 @@ class MyBinarySearchTree:
             return self.right.search(value)
         return value == self.root
 
-    def __sub_tree_search(self, value):
+    def __subtree_search(self, value):
         if value < self.root and self.left:
-            return self.left.__sub_tree_search(value)
+            return self.left.__subtree_search(value)
         elif value > self.root and self.right:
-            return self.right.__sub_tree_search(value)
+            return self.right.__subtree_search(value)
         if value == self.root:
             return self
 
@@ -80,13 +80,6 @@ class MyBinarySearchTree:
         if self.right:
             self.right.pre_order()
 
-    def __pre_order(self, array):
-        array.append(self.root)
-        if self.left:
-            self.left.__pre_order(array)
-        if self.right:
-            self.right.__pre_order(array)
-
     def in_order(self):
         if self.left:
             self.left.in_order()
@@ -119,23 +112,23 @@ class MyBinarySearchTree:
                 break
         print(out)
 
-    def __sub_trees_sizes(self, root):
+    def __subtrees_sizes(self, root):
         left = []
         right = []
-        found = self.__sub_tree_search(root)
+        found = self.__subtree_search(root)
         if found.left:
-            found.left.__pre_order(left)
+            found.left.__in_order(left)
         elif found.right:
-            found.right.__pre_order(right)
+            found.right.__in_order(right)
         return len(left) == len(right)
 
     def sub_trees_compare(self):
         keys = []
         nodes = []
-        self.__pre_order(keys)
+        self.__in_order(keys)
         for i in range(len(keys)):
             root = keys[i]
-            compare = self.__sub_trees_sizes(root)
+            compare = self.__subtrees_sizes(root)
             if compare:
                 nodes.append(root)
         return print(nodes)
